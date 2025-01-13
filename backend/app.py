@@ -1,7 +1,14 @@
+# app.py
 from flask import Flask, jsonify, request
 import requests
 
+# Create Flask app
 app = Flask(__name__)
+
+# Simple route
+@app.route('/')
+def home():
+    return "Hello, World!"
 
 @app.route('/api/user-stats/<username>', methods=['GET'])
 def get_user_stats(username):
@@ -11,6 +18,7 @@ def get_user_stats(username):
     else:
         return jsonify({'error': 'User not found'}), 404
 
-if __name__ == '__main__':
-    # Only run the server if this script is executed directly
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
+
