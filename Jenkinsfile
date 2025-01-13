@@ -28,7 +28,7 @@ pipeline {
         
         stage('Run Tests') {
             steps {
-                 dir("${env.BACKEND_DIR}")
+                // Run unit tests using pytest
                   sh 'pytest'
             }
         }
@@ -36,7 +36,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 // Build the backend Docker image
-                 sh "docker build -f ${env.BACKEND_DIR}/Dockerfile.backend -t backend ${env.BACKEND_DIR}"
+                sh 'docker build -f ${env.BACKEND_DIR}/Dockerfile.backend -t backend .'
             }
         }
         
@@ -45,13 +45,14 @@ pipeline {
                 // Run the Docker container, ensuring it exposes port 5000
                 sh 'docker stop my-python-app || true'
                 sh 'docker rm my-python-app || true'
-                sh 'docker run -d -p 5000:5000 --name my-python-app my-python-app backend'
+                sh 'docker run -d -p 5000:5000 --name my-python-app my-python-app'
 
             }
         }
     }
     
     post {
+
         
         success {
             // Notify or log success
