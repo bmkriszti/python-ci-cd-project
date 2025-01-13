@@ -12,6 +12,7 @@ def home():
 
 @app.route('/api/user-stats/<username>', methods=['GET'])
 def get_user_stats(username):
+    print(f"Fetching stats for user: {username}")
     response = requests.get(f'https://www.codewars.com/api/v1/users/{username}')
     if response.status_code == 200:
         return jsonify(response.json())
