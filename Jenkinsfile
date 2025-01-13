@@ -36,7 +36,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 // Build the backend Docker image
-                sh 'docker build -f ${env.BACKEND_DIR}/Dockerfile.backend -t backend .'
+                sh 'docker build -f ${env.BACKEND_DIR}/Dockerfile -t backend .'
             }
         }
         
