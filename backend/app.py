@@ -12,4 +12,5 @@ def get_user_stats(username):
         return jsonify({'error': 'User not found'}), 404
 
 if __name__ == '__main__':
+    # Only run the server if this script is executed directly
     app.run(debug=True)
