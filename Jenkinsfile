@@ -1,6 +1,11 @@
 pipeline {
     agent any
     
+     environment {
+        BACKEND_DIR = 'backend'
+        FRONTEND_DIR = 'frontend'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,11 +16,13 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
+        stage('Install Backend Dependencies') {
             steps {
-                // Install Python dependencies using pip3 (specify pip3 to match the installed version)
-                sh 'pip3 install --upgrade pip' // Ensures the latest pip
-                sh 'pip3 install -r requirements.txt'
+                // Install Python dependencies for the backend
+                dir("${env.BACKEND_DIR}") {
+                    sh 'pip3 install --upgrade pip' // Ensure the latest pip
+                    sh 'pip3 install -r requirements.txt'
+                }
             }
         }
         
@@ -26,10 +33,10 @@ pipeline {
             }
         }
         
-        stage('Build Docker Image') {
+        stage('Build Backend Docker Image') {
             steps {
-                // Build a Docker image
-                sh 'docker build -t my-python-app .'
+                // Build the backend Docker image
+                sh 'docker build -f ${env.BACKEND_DIR}/Dockerfile.backend -t backend .'
             }
         }
         
@@ -45,10 +52,6 @@ pipeline {
     }
     
     post {
-        always {
-            // Clean up if necessary
-            echo 'Cleaning up...'
-        }
         
         success {
             // Notify or log success
