@@ -34,14 +34,23 @@ pipeline {
             }
         }
         
-        stage('Build and Deploy with Docker Compose') {
+        stage('Build Backend Docker Image') {
             steps {
-                script {
-                    // Build and deploy both frontend and backend using Docker Compose
-                    sh "docker-compose -f ${env.COMPOSE_FILE} up --build -d"
-                }
+                // Build the backend Docker image
+                sh "docker build -f ${env.BACKEND_DIR}/Dockerfile -t backend ."
             }
         }
+        
+        stage('Deploy') {
+            steps {
+                // Run the Docker container, ensuring it exposes port 5000
+                sh 'docker stop my-python-app || true'
+                sh 'docker rm my-python-app || true'
+                sh 'docker run -d -p 5000:5000 --name my-python-app my-python-app'
+
+            }
+        }
+
     }
 
     post {
