@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // Build and deploy both frontend and backend using Docker Compose
-                    sh 'docker-compose -f ${env.COMPOSE_FILE} up --build -d'
+                    sh "docker-compose -f ${env.COMPOSE_FILE} up --build -d"
                 }
             }
         }
