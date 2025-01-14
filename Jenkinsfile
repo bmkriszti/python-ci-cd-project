@@ -1,9 +1,10 @@
 pipeline {
     agent any
-    
-     environment {
+
+    environment {
         BACKEND_DIR = 'backend'
         FRONTEND_DIR = 'frontend'
+        COMPOSE_FILE = 'docker-compose.yml'
     }
 
     stages {
@@ -29,31 +30,21 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Run unit tests using pytest
-                  sh 'pytest'
+                sh 'pytest'
             }
         }
         
-        stage('Build Backend Docker Image') {
+        stage('Build and Deploy with Docker Compose') {
             steps {
-                // Build the backend Docker image
-                sh "docker build -f ${env.BACKEND_DIR}/Dockerfile -t backend ."
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Run the Docker container, ensuring it exposes port 5000
-                sh 'docker stop my-python-app || true'
-                sh 'docker rm my-python-app || true'
-                sh 'docker run -d -p 5000:5000 --name my-python-app my-python-app'
-
+                script {
+                    // Build and deploy both frontend and backend using Docker Compose
+                    sh 'docker-compose -f ${env.COMPOSE_FILE} up --build -d'
+                }
             }
         }
     }
-    
-    post {
 
-        
+    post {
         success {
             // Notify or log success
             echo 'Build successful!'
@@ -65,4 +56,3 @@ pipeline {
         }
     }
 }
-
