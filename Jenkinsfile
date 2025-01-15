@@ -33,7 +33,6 @@ pipeline {
                 sh 'pytest'
             }
         }
-        
         stage('Build and Deploy with Docker Compose') {
             steps {
                 script {
@@ -42,6 +41,8 @@ pipeline {
                 }
             }
         }
+
+
     }
 
     post {
