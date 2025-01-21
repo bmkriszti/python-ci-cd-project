@@ -1,12 +1,6 @@
-// src/App.tsx
 import React, { useState } from 'react';
-
-interface UserData {
-  username: string;
-  data: {
-    [key: string]: any;
-  };
-}
+import './App.css'
+import { UserData } from '../types/UserData';
 
 const App: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -51,9 +45,30 @@ const App: React.FC = () => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {userData && (
         <div>
-          <h2>User Details</h2>
-          <p>Username: {userData.username}</p>
-          <pre>{JSON.stringify(userData.data, null, 2)}</pre>
+         <h2>User Details</h2>
+          <p>Usernam: {userData.username}</p>
+          <p>Name: {userData.name}</p>
+          <p>Honor: {userData.honor}</p>
+          <p>Clan: {userData.clan}</p>
+          <p>Leaderboard Position: {userData.leaderboardPosition}</p>
+          
+          <h3>Skills:</h3>
+          {userData.skills.length > 0 ? (
+              <ul>
+                {userData.skills.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No skills available</p>
+            )}
+
+          <h3>Ranks:</h3>
+          <p>Overall Rank: {userData.ranks.overall.rank} (Score: {userData.ranks.overall.score})</p>
+
+          <h3>Code Challenges:</h3>
+          <p>Total Authored: {userData.codeChallenges.totalAuthored}</p>
+          <p>Total Completed: {userData.codeChallenges.totalCompleted}</p>
         </div>
       )}
     </div>

@@ -1,0 +1,140 @@
+/* Reset some basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  color: #333;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #4A4A4A;
+}
+
+/* Main container for the whole app */
+div {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for form */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+form label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+form input {
+  width: 100%;
+  padding: 12px 18px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  border-color: #6A7F94;
+  outline: none;
+}
+
+form button {
+  padding: 12px 20px;
+  background-color: #6A7F94;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #4A5A6A;
+}
+
+/* Error message styling */
+p {
+  color: red;
+  font-size: 14px;
+}
+
+/* Styling for user details */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  background-color: #f9f9f9;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+ul li span {
+  font-weight: bold;
+}
+
+/* Styling for sections and headers */
+h3 {
+  font-size: 20px;
+  color: #4A4A4A;
+  margin-bottom: 10px;
+}
+
+ul li {
+  font-size: 16px;
+}
+
+h3, h2, ul li {
+  text-align: left;
+}
+
+/* Adding a subtle animation effect */
+ul li, form button {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

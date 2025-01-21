@@ -19,4 +19,7 @@ services:
     ports:
       - "3000:80"
     environment:
-      - FRONTEND_ENV=production
+      - FRONTEND_ENV=development  # Set React app to development mode for hot-reloading
+    volumes:
+      - ./frontend:/app  # Sync the frontend code between your host and container
+  
