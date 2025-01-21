@@ -40,7 +40,7 @@ const App: React.FC = () => {
             required
           />
         </label>
-        <button type="submit">Search</button>
+        <button className="button-55" type="submit">Search</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {userData && (

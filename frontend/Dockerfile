@@ -1,19 +1,20 @@
+# Use a Node.js base image
 FROM node:16 AS build
 
+# Set the working directory in the container
 WORKDIR /app
 
+# Copy package.json and package-lock.json to install dependencies
 COPY package.json package-lock.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the app
 COPY . .
 
-RUN npm run build
+# Expose the port used by React's dev server
+EXPOSE 3000
 
-FROM nginx:alpine
-
-COPY --from=build /app/build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Run React's development server
+CMD ["npm", "start"]
