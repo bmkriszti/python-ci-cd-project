@@ -19,12 +19,8 @@ const App: React.FC = () => {
     setUserData(null);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/user-stats/${username}`, {
-        method: 'GET',  
-        headers: {
-          'Content-Type': 'application/json',  
-        },
-      });
+      const response = await fetch(`http://localhost:5000/api/user-stats/${username}`
+      );
   
       if (!response.ok) {
         throw new Error('User not found');
