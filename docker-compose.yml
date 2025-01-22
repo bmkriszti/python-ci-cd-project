@@ -20,3 +20,4 @@ services:
       - FRONTEND_ENV=production  # Set React app to production mode
     volumes:
       - ./frontend:/app
+    command: npm start  
