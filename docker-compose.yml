@@ -1,27 +1,22 @@
-
-
 services:
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Expose backend on port 5000
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=production  # Running in production mode
     volumes:
-      - ./backend:/app 
+      - ./backend:/app
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:5000"  # Map frontend port to 5000 (if you're serving static on port 5000)
     environment:
-      - FRONTEND_ENV=development  # Set React app to development mode for hot-reloading
+      - FRONTEND_ENV=production  # Set React app to production mode
     volumes:
-      - ./frontend:/app  # Sync the frontend code between your host and container
-      - /app/node_modules  # Ensure node_modules doesn't get overwritten by the volume
-    command: npm start 
-  
+      - ./frontend:/app
