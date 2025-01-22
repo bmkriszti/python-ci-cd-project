@@ -15,7 +15,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:5000"  # Map frontend port to 5000 (if you're serving static on port 5000)
+      - "3000:3000"  # Map frontend port to 5000 (if you're serving static on port 5000)
     environment:
       - FRONTEND_ENV=production  # Set React app to production mode
     volumes:
