@@ -11,8 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub
-                git branch: 'main', 
-                    credentialsId: 'github-pat-jenkins', 
+                git branch: 'main',
                     url: 'https://github.com/bmkriszti/python-ci-cd-project'
             }
         }
