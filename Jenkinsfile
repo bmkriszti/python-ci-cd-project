@@ -28,8 +28,11 @@ pipeline {
         
         stage('Run Tests') {
             steps {
-                // Run unit tests using pytest
-                sh 'pytest'
+                 withEnv(['PATH+PYTHON=/var/lib/jenkins/.local/bin']) {
+                    dir('backend') {
+                        sh 'pytest'
+                    }
+                }
             }
         }
         stage('Build and Deploy with Docker Compose') {
