@@ -13,7 +13,7 @@ const App: React.FC = () => {
     setUserData(null);
 
     try {
-      const response = await fetch(`http://13.53.104.37:5000//api/user-stats/${username}`
+      const response = await fetch(`http://13.53.104.37:5000/api/user-stats/${username}`
       );
   
       if (!response.ok) {
