@@ -72,3 +72,5 @@ The Jenkins pipeline (`Jenkinsfile`) includes:
 - Dependency installation
 - Unit tests
 - Docker image build and deployment
+
+- https://medium.com/@dassandeep0001/how-to-install-git-in-ec2-instance-1bfeb1cc9dc9
